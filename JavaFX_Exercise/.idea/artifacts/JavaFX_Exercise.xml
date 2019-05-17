@@ -1,0 +1,30 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="JavaFX_Exercise">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaFX_Exercise</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="address.MainApp" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="icons">
+          <JavaFxApplicationIcons>
+            <option name="macIcon" value="$PROJECT_DIR$/resources/images/angry-minion-icon.png" />
+          </JavaFxApplicationIcons>
+        </option>
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="AddressApp" />
+        <option name="vendor" value="" />
+        <option name="version" value="1.0" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="JavaFX_Exercise.jar">
+        <element id="module-output" name="JavaFX_Exercise" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+        </element>
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/lib/controlsfx-8.0.6_20.jar" />
+    </root>
+  </artifact>
+</component>

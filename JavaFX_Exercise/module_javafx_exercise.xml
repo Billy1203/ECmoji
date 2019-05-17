@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_javafx_exercise" default="compile.module.javafx_exercise">
+  <dirname property="module.javafx_exercise.basedir" file="${ant.file.module_javafx_exercise}"/>
+  
+  <property name="module.jdk.home.javafx_exercise" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.javafx_exercise" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.javafx_exercise" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.javafx_exercise" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="javafx_exercise.output.dir" value="${module.javafx_exercise.basedir}/out/production/JavaFX_Exercise"/>
+  <property name="javafx_exercise.testoutput.dir" value="${module.javafx_exercise.basedir}/out/test/JavaFX_Exercise"/>
+  
+  <path id="javafx_exercise.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="javafx_exercise.module.production.classpath">
+    <path refid="${module.jdk.classpath.javafx_exercise}"/>
+    <pathelement location="${basedir}/lib/controlsfx-8.0.6_20.jar"/>
+  </path>
+  
+  <path id="javafx_exercise.runtime.production.module.classpath">
+    <pathelement location="${javafx_exercise.output.dir}"/>
+    <pathelement location="${basedir}/lib/controlsfx-8.0.6_20.jar"/>
+  </path>
+  
+  <path id="javafx_exercise.module.classpath">
+    <path refid="${module.jdk.classpath.javafx_exercise}"/>
+    <pathelement location="${javafx_exercise.output.dir}"/>
+    <pathelement location="${basedir}/lib/controlsfx-8.0.6_20.jar"/>
+  </path>
+  
+  <path id="javafx_exercise.runtime.module.classpath">
+    <pathelement location="${javafx_exercise.testoutput.dir}"/>
+    <pathelement location="${javafx_exercise.output.dir}"/>
+    <pathelement location="${basedir}/lib/controlsfx-8.0.6_20.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.javafx_exercise">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.javafx_exercise">
+    <patternset refid="excluded.from.module.javafx_exercise"/>
+  </patternset>
+  
+  <path id="javafx_exercise.module.sourcepath">
+    <dirset dir="${module.javafx_exercise.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.javafx_exercise" depends="compile.module.javafx_exercise.production,compile.module.javafx_exercise.tests" description="Compile module JavaFX_Exercise"/>
+  
+  <target name="compile.module.javafx_exercise.production" depends="register.custom.compilers" description="Compile module JavaFX_Exercise; production classes">
+    <mkdir dir="${javafx_exercise.output.dir}"/>
+    <javac2 destdir="${javafx_exercise.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.javafx_exercise}/javac">
+      <compilerarg line="${compiler.args.javafx_exercise}"/>
+      <bootclasspath refid="javafx_exercise.module.bootclasspath"/>
+      <classpath refid="javafx_exercise.module.production.classpath"/>
+      <src refid="javafx_exercise.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.javafx_exercise"/>
+    </javac2>
+    
+    <copy todir="${javafx_exercise.output.dir}">
+      <fileset dir="${module.javafx_exercise.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.javafx_exercise.tests" depends="register.custom.compilers,compile.module.javafx_exercise.production" description="compile module JavaFX_Exercise; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.javafx_exercise" description="cleanup module">
+    <delete dir="${javafx_exercise.output.dir}"/>
+    <delete dir="${javafx_exercise.testoutput.dir}"/>
+  </target>
+</project>
